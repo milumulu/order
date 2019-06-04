@@ -1,5 +1,6 @@
 package com.milu.order.enums;
 
+import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.baomidou.mybatisplus.core.enums.IEnum;
 import lombok.Getter;
 
@@ -10,6 +11,7 @@ public enum OrderStatusEnum implements IEnum<Integer> {
     CANCEL(2, "已取消"),
     ;
 
+    @EnumValue
     private Integer code;
 
     private String message;

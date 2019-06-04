@@ -11,4 +11,6 @@ spring:
     username: root
     password: 123456
 mybatis-plus:
-  type-enums-package: com.milu.product.enums
+  type-enums-package: com.milu.order.enums
+server:
+  port: 8081
