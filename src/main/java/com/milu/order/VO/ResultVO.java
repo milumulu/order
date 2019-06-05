@@ -7,9 +7,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class ResultVO<T> implements Serializable {
-
-    private static final long serialVersionUID = 3938626101358237007L;
+public class ResultVO<T> {
 
     /** 错误码 */
     private Integer code;

@@ -1,4 +1,4 @@
-package com.milu.order.dto;
+package com.milu.order.DTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

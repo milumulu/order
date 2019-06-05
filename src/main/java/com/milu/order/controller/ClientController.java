@@ -1,6 +1,9 @@
 package com.milu.order.controller;
 
+import com.milu.order.DTO.CartDTO;
 import com.milu.order.client.ProductClient;
+import com.milu.order.entity.ProductInfo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
@@ -8,6 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @program: order
@@ -17,6 +23,7 @@ import org.springframework.web.client.RestTemplate;
  */
 @RestController
 @RequestMapping("/order")
+@Slf4j
 public class ClientController {
 
 //    @Autowired
@@ -46,5 +53,21 @@ public class ClientController {
         //4.第四种方式（利用Feign的方式）
         String response = productClient.productMsg();
         return response;
+    }
+
+    @GetMapping("/getProductList")
+    public String getProductList() {
+        List<ProductInfo> productInfoList = productClient.getProductInfoListByIds(Arrays.asList("09e22e4e8505a46a59e047db3df10190"));
+        log.info("response = {}", productInfoList.toString());
+        return "ok";
+    }
+
+    @GetMapping("/decreaseStock")
+    public String decreaseStock() {
+        CartDTO cartDTO = new CartDTO();
+        cartDTO.setProductId("09e22e4e8505a46a59e047db3df10190");
+        cartDTO.setProductQuantity(10);
+        productClient.decreaseStock(Arrays.asList(cartDTO));
+        return "ok";
     }
 }
